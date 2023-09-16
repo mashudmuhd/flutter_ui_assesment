@@ -42,7 +42,9 @@ class ScheduleScreen extends StatelessWidget {
         itemCount: 25,
         separatorBuilder: (BuildContext context, int index) => const SizedBox(),
         itemBuilder: (BuildContext context, int index) {
-          return buildAppointmentCard();
+          return buildAppointmentCard(
+            onTap: ()=>getBottomSheet(context)
+          );
         },
       ),
     );
@@ -56,73 +58,79 @@ class ScheduleScreen extends StatelessWidget {
         separatorBuilder: (BuildContext context, int index) => const SizedBox(),
         itemBuilder: (BuildContext context, int index) {
           return buildAppointmentCard(
-              onTap: () => showModalBottomSheet(
-                    context: context,
-                    builder: (BuildContext builderContext) {
-                      return Container(
-                        width: double.maxFinite,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              const SizedBox(
+              onTap: () => getBottomSheet(context));
+        },
+      ),
+    );
+  }
+
+  Future<dynamic> getBottomSheet(BuildContext context) {
+    return showModalBottomSheet(
+                  context: context,
+                  builder: (BuildContext builderContext) {
+                    return SizedBox(
+                      width: double.maxFinite,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            const Center(
+                              child:  SizedBox(
                                   width: 80,
                                   child: Divider(
                                     thickness: 3,
                                   )),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    const SizedBox(
-                                      width: 50,
-                                    ),
-                                    regularBodyText(
-                                        text: "Summary",
-                                        fontSize: 20.0,
-                                        fontWeight: FontWeight.bold),
-                                    regularBodyText(
-                                        text: "Cancel",
-                                        fontColor: Colors.blueAccent),
-                                  ],
-                                ),
-                              ),
-                              getDoctorListTile(),
-                              getHeight(20.0),
-                              regularBodyText(
-                                  text: "Doctors,advice",
-                                  fontWeight: FontWeight.bold),
-                              getHeight(10.0),
-                              getDoctorsAdviceWidget(
-                                  adviceText:
-                                      "Drink four Litters of water everyday"),
-                              getDoctorsAdviceWidget(adviceText: "No smoking"),
-                              getDoctorsAdviceWidget(
-                                  adviceText: "Sleep 8 hours"),
-                              getHeight(20.0),
-                              regularBodyText(
-                                text: "Discharge",
-                                fontWeight: FontWeight.bold,
-                              ),
-                              getHeight(10.0),
-                              Row(
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  getPdfContainer(fileCount: "File 1"),
-                                  getPdfContainer(fileCount: "File 2"),
+                                  const SizedBox(
+                                    width: 50,
+                                  ),
+                                  regularBodyText(
+                                      text: "Summary",
+                                      fontSize: 20.0,
+                                      fontWeight: FontWeight.bold),
+                                  regularBodyText(
+                                      text: "Cancel",
+                                      fontColor: Colors.blueAccent),
                                 ],
-                              )
-                            ],
-                          ),
+                              ),
+                            ),
+                            getDoctorListTile(),
+                            getHeight(20.0),
+                            regularBodyText(
+                                text: "Doctors,advice",
+                                fontWeight: FontWeight.bold),
+                            getHeight(10.0),
+                            getDoctorsAdviceWidget(
+                                adviceText:
+                                    "Drink four Litters of water everyday"),
+                            getDoctorsAdviceWidget(adviceText: "No smoking"),
+                            getDoctorsAdviceWidget(
+                                adviceText: "Sleep 8 hours"),
+                            getHeight(20.0),
+                            regularBodyText(
+                              text: "Discharge",
+                              fontWeight: FontWeight.bold,
+                            ),
+                            getHeight(10.0),
+                            Row(
+                              children: [
+                                getPdfContainer(fileCount: "File 1"),
+                                getPdfContainer(fileCount: "File 2"),
+                              ],
+                            )
+                          ],
                         ),
-                      );
-                    },
-                  ));
-        },
-      ),
-    );
+                      ),
+                    );
+                  },
+                );
   }
 
   ///Customized tab bar

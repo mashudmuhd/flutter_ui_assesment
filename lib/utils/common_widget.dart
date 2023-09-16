@@ -64,8 +64,8 @@ Widget buildAppointmentCard({onTap}) {
                       const Icon(Icons.more_vert_outlined)
                     ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
                     child: Divider(),
                   ),
                   getDoctorListTile(),
@@ -75,7 +75,7 @@ Widget buildAppointmentCard({onTap}) {
             const Positioned(
                 left:-7,
                 top:30,
-                child: SizedBox(height:100, child: VerticalDivider(thickness: 2,color: Colors.green,))),
+                child: SizedBox(height:100, child: VerticalDivider(thickness: 4,color: Colors.green,))),
           ],
         ),
       ),
