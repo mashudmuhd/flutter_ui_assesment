@@ -36,32 +36,33 @@ class ScheduleScreen extends StatelessWidget {
   }
 
   Widget getPastTab() {
-    return Expanded(
-      child: ListView.separated(
-        physics: const BouncingScrollPhysics(),
-        itemCount: 25,
-        separatorBuilder: (BuildContext context, int index) => const SizedBox(),
-        itemBuilder: (BuildContext context, int index) {
-          return buildAppointmentCard(
-            onTap: ()=>getBottomSheet(context)
-          );
-        },
-      ),
+    return ListView.separated(
+      shrinkWrap: true,
+      physics: const BouncingScrollPhysics(),
+      itemCount: 25,
+      separatorBuilder: (BuildContext context, int index) => const SizedBox(),
+      itemBuilder: (BuildContext context, int index) {
+        return buildAppointmentCard(
+          onTap: () => getBottomSheet(context),
+        );
+      },
     );
+
   }
 
   Widget getUpcomingTab() {
-    return Expanded(
-      child: ListView.separated(
-        physics: const BouncingScrollPhysics(),
-        itemCount: 25,
-        separatorBuilder: (BuildContext context, int index) => const SizedBox(),
-        itemBuilder: (BuildContext context, int index) {
-          return buildAppointmentCard(
-              onTap: () => getBottomSheet(context));
-        },
-      ),
+    return ListView.separated(
+      shrinkWrap: true,
+      physics: const BouncingScrollPhysics(),
+      itemCount: 25,
+      separatorBuilder: (BuildContext context, int index) => const SizedBox(),
+      itemBuilder: (BuildContext context, int index) {
+        return buildAppointmentCard(
+          onTap: () => getBottomSheet(context),
+        );
+      },
     );
+
   }
 
   Future<dynamic> getBottomSheet(BuildContext context) {
